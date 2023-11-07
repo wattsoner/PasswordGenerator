@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]) {
     int AMOUNT, CHOICE_TYPE;
-    bool CHOICE_CAPS = false, CHOICE_NUMB = false;
+    bool CHOICE_CAPS = false, CHOICE_NUMB = false, CHOICE_SYMBOLS = false;
     std::string INPUT;
     
     AddColour(1, "This is a Password Generator, made by wattie :3");
@@ -19,7 +19,18 @@ int main(int argc, char* argv[]) {
     switch (CHOICE_TYPE) {
         
     case 1:
-        std::cout << "1";
+        std::cout << "Allow Symbols? (y/n): ";
+        std::cin >> INPUT;
+        if (INPUT == "y" || INPUT == "Y") {
+            CHOICE_SYMBOLS = true;
+        }
+
+        int AMOUNT;
+        std::cout << "Enter the amount of characters to generate: ";
+        std::cin >> AMOUNT;
+
+       GenerateRandomPassword(AMOUNT, CHOICE_SYMBOLS);
+        
         break;
     case 2:
         {

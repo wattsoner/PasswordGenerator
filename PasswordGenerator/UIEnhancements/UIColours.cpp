@@ -14,3 +14,11 @@ void AddColour(const int colour, const std::string& text) {
     
     SetConsoleTextAttribute(hConsole, saved_attributes);
 }
+
+void AddColourV2(WORD color, const std::string& text) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+    std::cout << text;
+    // Reset to default color
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+}
