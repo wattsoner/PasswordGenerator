@@ -1,20 +1,19 @@
-#include "UIEnhancements/UIColours.h"
-#include "Functions/FileHelper.h"
 #include <iostream>
+#include "Functions/GeneratorFunctions.h"
+#include "UIEnhancements/UIColours.h"
 
 int main(int argc, char* argv[]) {
     int AMOUNT, CHOICE_TYPE;
     bool CHOICE_CAPS = false, CHOICE_NUMB = false;
     std::string INPUT;
-
-   AddColour(1, "This is a Password Generator, made by wattie :3");
     
+    AddColour(1, "This is a Password Generator, made by wattie :3");
 
     std::cout << "Please Choose a Password Generation Type (please enter the number)" << std::endl;
-    std::cout << "Random Password (1)\n"
-              << "Memorable Password (2)\n"
-              << "Pin Password (3)\n";
-
+    AddColour(2, "Random Password (1)");
+    AddColour(3, "Memorable Password (2)");
+    AddColour(4, "Pin Password (3)");
+    
     std::cin >> CHOICE_TYPE;
 
     switch (CHOICE_TYPE) {
