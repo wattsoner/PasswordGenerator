@@ -2,7 +2,7 @@
 #include <windows.h> 
 #include <string>
 
-void AddColour(const int colour, const std::string& text) {
+auto AddColour(const int colour, const std::string& text) -> void {
     const HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
     GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
@@ -15,10 +15,9 @@ void AddColour(const int colour, const std::string& text) {
     SetConsoleTextAttribute(hConsole, saved_attributes);
 }
 
-void AddColourV2(WORD color, const std::string& text) {
+auto AddColourV2(WORD color, const std::string& text) -> void {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, color);
     std::cout << text;
-    // Reset to default color
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 }

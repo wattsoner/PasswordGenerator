@@ -9,7 +9,7 @@
 #include <random>
 #include <windows.h>
 
-std::string GenerateWords(int word_amount, const bool caps, const bool number) {
+auto GenerateWords(size_t word_amount, const bool caps, const bool number) -> void {
     const std::string filePath = "words.txt";
     
     std::ifstream file(filePath);
@@ -18,7 +18,6 @@ std::string GenerateWords(int word_amount, const bool caps, const bool number) {
     
     if (!file) {
         std::cerr << "Unable to open file: " << filePath << std::endl;
-        return "";
     }
     
     while (file >> word) {
@@ -32,7 +31,6 @@ std::string GenerateWords(int word_amount, const bool caps, const bool number) {
     
     if (words.empty()) {
         std::cerr << "The file is empty." << std::endl;
-        return "";
     }
     
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
@@ -45,21 +43,20 @@ std::string GenerateWords(int word_amount, const bool caps, const bool number) {
             result += "-";
         }
         if (i == randomNumberPosition) {
-            result += std::to_string(std::rand() % 10); // Ensure number is 0-9
+            result += std::to_string(std::rand() % 10);
         } else {
             result += words[std::rand() % words.size()];
         }
     }
 
-    return result;
+    std::cout << result << std::endl;
 }
 
-std::string GenerateRandomPassword(const int length, const bool allowSymbols) {
+auto GenerateRandomPassword(size_t length, const bool allowSymbols) -> void {
     const std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     const std::string symbols = "!\"#$%&'()*+,-./:;<=>?@[\\]^_{|}~";
     const std::string allowedChars = allowSymbols ? chars + symbols : chars;
     
-    // Create a random device and seed it to the random number generator.
     std::random_device rd;
     std::mt19937 generator(rd());
     std::uniform_int_distribution<> distribution(0, allowedChars.size() - 1);
@@ -70,15 +67,26 @@ std::string GenerateRandomPassword(const int length, const bool allowSymbols) {
         char nextChar = allowedChars[distribution(generator)];
         password += nextChar;
         
-        // Check if the character is a symbol and print in red if it is
         if (allowSymbols && symbols.find(nextChar) != std::string::npos) {
-            AddColourV2(FOREGROUND_RED, std::string(1, nextChar)); // print symbols in red
+            AddColourV2(FOREGROUND_RED, std::string(1, nextChar));
         } else {
-            AddColourV2(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED, std::string(1, nextChar)); // print other characters normally
+            AddColourV2(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED, std::string(1, nextChar)); 
         }
     }
 
-    std::cout << std::endl; // end the line after printing the password
+    std::cout << password << std::endl;
     
-    return password;
+}
+
+auto GeneratePIN(size_t length) -> void {
+    std::random_device rd;
+    std::mt19937_64 eng(rd());
+    std::uniform_int_distribution<> distr(0, 9);
+    
+    std::string pin;
+    for(size_t i = 0; i < length; ++i) {
+        pin += std::to_string(distr(eng));
+    }
+
+    std::cout << pin << std::endl;
 }

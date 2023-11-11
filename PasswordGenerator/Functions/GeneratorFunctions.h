@@ -1,6 +1,7 @@
 #pragma once
-#include <string>
 
-std::string GenerateWords(int word_amount, bool caps, bool number);
+auto GenerateWords(size_t word_amount, bool caps, bool number) -> void;
 
-std::string GenerateRandomPassword(const int length, const bool allowSymbols);
+auto GenerateRandomPassword(size_t length, const bool allowSymbols) -> void;
+
+auto GeneratePIN(size_t length) -> void;
