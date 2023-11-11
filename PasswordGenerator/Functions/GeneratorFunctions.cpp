@@ -79,7 +79,7 @@ auto GenerateRandomPassword(size_t length, const bool allowSymbols) -> void {
     
 }
 
-auto GeneratePIN(size_t length) -> void {
+auto GeneratePIN(const size_t length) -> void {
     std::random_device rd;
     std::mt19937_64 eng(rd());
     std::uniform_int_distribution<> distr(0, 9);
