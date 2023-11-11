@@ -1,13 +1,10 @@
 #include "GeneratorFunctions.h"
 #include "../UIEnhancements/UIColours.h"
+
 #include <fstream>
 #include <iostream>
-#include <vector>
-#include <string>
-#include <cstdlib>
-#include <ctime>
 #include <random>
-#include <windows.h>
+
 
 auto GenerateWords(const size_t word_amount, const bool caps, const bool number) -> void {
     const std::string filePath = "words.txt";
