@@ -15,6 +15,7 @@ auto GenerateWords(const size_t word_amount, const bool caps, const bool number)
     
     if (!file) {
         std::cerr << "Unable to open file: " << filePath << std::endl;
+        return;
     }
     
     while (file >> word) {
@@ -28,21 +29,24 @@ auto GenerateWords(const size_t word_amount, const bool caps, const bool number)
     
     if (words.empty()) {
         std::cerr << "The file is empty." << std::endl;
+        return;
     }
     
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    
-    std::string result;
-    const int randomNumberPosition = number ? std::rand() % word_amount : -1;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, words.size() - 1);
 
-    for (int i = 0; i < word_amount; ++i) {
+    std::string result;
+    const int randomNumberPosition = number ? dis(gen) % word_amount : -1;
+
+    for (size_t i = 0; i < word_amount; ++i) {
         if (i > 0 && i != randomNumberPosition) {
             result += "-";
         }
         if (i == randomNumberPosition) {
-            result += std::to_string(std::rand() % 10);
+            result += std::to_string(dis(gen) % 10);
         } else {
-            result += words[std::rand() % words.size()];
+            result += words[dis(gen)];
         }
     }
 
