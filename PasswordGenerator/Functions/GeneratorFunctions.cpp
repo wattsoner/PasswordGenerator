@@ -90,3 +90,5 @@ auto GeneratePIN(size_t length) -> void {
 
     std::cout << pin << std::endl;
 }
+
+

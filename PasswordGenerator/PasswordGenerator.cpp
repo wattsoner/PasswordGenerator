@@ -4,8 +4,13 @@
 
 int main() {
     int choiceType;
+    
     size_t amount;
-    bool choiceCaps, choiceNumb, choiceSymbols;
+    
+    bool choiceCaps;
+    bool choiceNumb;
+    bool choiceSymbols;
+    
     std::string input;
     
     AddColour(1, "This is a Password Generator, made by wattie :3");
@@ -16,13 +21,6 @@ int main() {
     
     std::cin >> choiceType;
     
-    auto readInput = [](const std::string& prompt) {
-        std::string input;
-        std::cout << prompt;
-        std::cin >> input;
-        return input == "y" || input == "Y";
-    };
-
     switch (choiceType) {
     case 1:
         choiceSymbols = readInput("Allow Symbols? (y/n): ");

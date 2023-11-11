@@ -16,7 +16,7 @@ auto AddColour(const int colour, const std::string& text) -> void {
 }
 
 auto AddColourV2(WORD color, const std::string& text) -> void {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    const HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, color);
     std::cout << text;
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
