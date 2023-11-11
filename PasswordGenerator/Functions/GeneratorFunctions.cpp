@@ -9,7 +9,7 @@
 #include <random>
 #include <windows.h>
 
-auto GenerateWords(size_t word_amount, const bool caps, const bool number) -> void {
+auto GenerateWords(const size_t word_amount, const bool caps, const bool number) -> void {
     const std::string filePath = "words.txt";
     
     std::ifstream file(filePath);
@@ -36,7 +36,7 @@ auto GenerateWords(size_t word_amount, const bool caps, const bool number) -> vo
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
     
     std::string result;
-    int randomNumberPosition = number ? std::rand() % word_amount : -1;
+    const int randomNumberPosition = number ? std::rand() % word_amount : -1;
 
     for (int i = 0; i < word_amount; ++i) {
         if (i > 0 && i != randomNumberPosition) {

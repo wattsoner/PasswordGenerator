@@ -2,6 +2,13 @@
 #include "Functions/GeneratorFunctions.h"
 #include "UIEnhancements/UIColours.h"
 
+auto readInput = [](const std::string& prompt) {
+    std::string input;
+    std::cout << prompt;
+    std::cin >> input;
+    return input == "y" || input == "Y";
+};
+
 int main() {
     int choiceType;
     
@@ -12,6 +19,7 @@ int main() {
     bool choiceSymbols;
     
     std::string input;
+
     
     AddColour(1, "This is a Password Generator, made by wattie :3");
     std::cout << "Please Choose a Password Generation Type (please enter the number)" << std::endl;
@@ -46,3 +54,4 @@ int main() {
     
     return 0;
 }
+
