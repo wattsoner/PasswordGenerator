@@ -6,7 +6,6 @@
  * \param word_amount size_t Value that determines how many words will be generated in total.
  * \param caps   Weather the words will be capitalised, for example for example Foo-Bar4-Baz-Qux.
  * \param number This boolean determines weather a random number within a random word will be generated, for example foo-bar4-baz-qux.
- *
  * \return void
 
  */
@@ -17,7 +16,7 @@ auto GenerateWords(size_t word_amount, bool caps, bool number) -> void;
  * 
  * \param length size_t Value to decide the length of the random password.
  * \param allowSymbols Allows symbols to be included in the password. If enabled, symbols will be highlighted in red.
-*  \return void
+ * \return void
  */
 auto GenerateRandomPassword(size_t length, bool allowSymbols) -> void;
 
